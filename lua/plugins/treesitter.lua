@@ -9,7 +9,10 @@ return {
       "bash", "c", "diff", "html", "lua", "luadoc",
       "markdown", "markdown_inline", "query", "vim", "vimdoc",
     }
-    require("nvim-treesitter").install(parsers)
+    -- install needs tree-sitter CLI; skip silently if not available
+    if vim.fn.executable("tree-sitter") == 1 then
+      require("nvim-treesitter").install(parsers)
+    end
 
     local available = require("nvim-treesitter").get_available()
     vim.api.nvim_create_autocmd("FileType", {
@@ -19,7 +22,7 @@ return {
         local installed = require("nvim-treesitter").get_installed("parsers")
         if vim.tbl_contains(installed, lang) then
           vim.treesitter.start(args.buf, lang)
-        elseif vim.tbl_contains(available, lang) then
+        elseif vim.fn.executable("tree-sitter") == 1 and vim.tbl_contains(available, lang) then
           require("nvim-treesitter").install(lang):await(function()
             vim.treesitter.start(args.buf, lang)
           end)
