@@ -9,9 +9,9 @@ return {
       "bash", "c", "diff", "html", "lua", "luadoc",
       "markdown", "markdown_inline", "query", "vim", "vimdoc",
     }
-    -- install needs tree-sitter CLI; skip silently if not available
+    -- install needs tree-sitter CLI; pcall guards Windows EPERM on rename
     if vim.fn.executable("tree-sitter") == 1 then
-      require("nvim-treesitter").install(parsers)
+      pcall(require("nvim-treesitter").install, parsers)
     end
 
     local available = require("nvim-treesitter").get_available()
@@ -23,8 +23,10 @@ return {
         if vim.tbl_contains(installed, lang) then
           vim.treesitter.start(args.buf, lang)
         elseif vim.fn.executable("tree-sitter") == 1 and vim.tbl_contains(available, lang) then
-          require("nvim-treesitter").install(lang):await(function()
-            vim.treesitter.start(args.buf, lang)
+          pcall(function()
+            require("nvim-treesitter").install(lang):await(function()
+              vim.treesitter.start(args.buf, lang)
+            end)
           end)
         end
       end,
