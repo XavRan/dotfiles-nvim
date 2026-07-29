@@ -1,6 +1,6 @@
 -- Project: auto-cd + telescope integration
 return {
-  "ahmedkhalf/project.nvim",
+  "DrKJeff16/project.nvim",
   event = "VeryLazy",
   config = function()
     require("project_nvim").setup({})
