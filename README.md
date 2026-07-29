@@ -11,12 +11,21 @@ Neovim config based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nv
 
 ## Install
 
+### Linux / macOS
+
 ```bash
 git clone https://github.com/XavRan/dotfiles-nvim.git ~/.config/nvim
 nvim
 ```
 
-Lazy.nvim auto-installs on first launch.
+### Windows (PowerShell)
+
+```powershell
+git clone https://github.com/XavRan/dotfiles-nvim.git $env:LOCALAPPDATA\nvim
+nvim
+```
+
+Lazy.nvim auto-installs on first launch. Run `:Mason` to install LSP servers and tools.
 
 ## Structure
 
@@ -49,6 +58,95 @@ lua/
                         indent-blankline, rainbow-delimiters,
                         actions-preview, lspimport, venv-selector
 ```
+
+## Plugins
+
+### Core
+
+| Plugin | Description |
+|--------|-------------|
+| [lazy.nvim](https://github.com/folke/lazy.nvim) | Plugin manager |
+| [onedark.nvim](https://github.com/navarasu/onedark.nvim) | Colorscheme |
+| [which-key.nvim](https://github.com/folke/which-key.nvim) | Keymap discovery popup |
+| [mini.nvim](https://github.com/echasnovski/mini.nvim) | Statusline, textobjects, surround, move |
+
+### Editing
+
+| Plugin | Description |
+|--------|-------------|
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting, indentation |
+| [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) | Text objects (af/if/ac/ic) |
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Auto-close brackets/quotes |
+| [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippet engine |
+| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) | Pre-made snippets |
+| [boole.nvim](https://github.com/nat-418/boole.nvim) | Toggle booleans/dates with `<C-a>`/`<C-x>` |
+| [vim-sleuth](https://github.com/tpope/vim-sleuth) | Auto-detect indent settings |
+| [vim-eunuch](https://github.com/tpope/vim-eunuch) | File operations (:Mkdir, :Move, :Chmod) |
+
+### LSP & Completion
+
+| Plugin | Description |
+|--------|-------------|
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP configuration |
+| [mason.nvim](https://github.com/williamboman/mason.nvim) | LSP/tool installer |
+| [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim) | Mason-LSP bridge |
+| [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) | Auto-install tools |
+| [fidget.nvim](https://github.com/j-hui/fidget.nvim) | LSP status notifications |
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | Completion engine |
+| [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) | LSP completion source |
+| [cmp-path](https://github.com/hrsh7th/cmp-path) | Path completion source |
+| [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip) | Snippet completion source |
+| [lspkind-nvim](https://github.com/onsails/lspkind-nvim) | Completion icons |
+| [conform.nvim](https://github.com/stevearc/conform.nvim) | Formatting |
+| [actions-preview.nvim](https://github.com/aznhe21/actions-preview.nvim) | Code action preview |
+| [nvim-lspimport](https://github.com/stevanmilic/nvim-lspimport) | Auto-import missing symbols |
+
+### Navigation & Search
+
+| Plugin | Description |
+|--------|-------------|
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder |
+| [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | FZF sorter for telescope |
+| [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim) | UI select replacement |
+| [oil.nvim](https://github.com/stevearc/oil.nvim) | File manager (edit directories like buffers) |
+| [harpoon](https://github.com/ThePrimeagen/harpoon) | Quick file switching |
+| [alpha-nvim](https://github.com/goolord/alpha-nvim) | Dashboard/greeter |
+| [project.nvim](https://github.com/DrKJeff16/project.nvim) | Auto-cd to project root + history |
+| [persistence.nvim](https://github.com/folke/persistence.nvim) | Session restore |
+
+### Git
+
+| Plugin | Description |
+|--------|-------------|
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git signs in gutter |
+| [neogit](https://github.com/NeogitOrg/neogit) | Magit-style git UI |
+| [diffview.nvim](https://github.com/sindrets/diffview.nvim) | Diff viewer (neogit dep) |
+
+### Diagnostics & Debug
+
+| Plugin | Description |
+|--------|-------------|
+| [trouble.nvim](https://github.com/folke/trouble.nvim) | Diagnostics browser |
+| [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) | Highlight TODO/FIXME/NOTE |
+| [nvim-dap](https://github.com/mfussenegger/nvim-dap) | Debug Adapter Protocol |
+| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) | DAP UI |
+| [nvim-dap-go](https://github.com/leoluz/nvim-dap-go) | Go debugger (delve) |
+| [mason-nvim-dap](https://github.com/jay-babu/mason-nvim-dap.nvim) | Auto-install debuggers |
+
+### Visual
+
+| Plugin | Description |
+|--------|-------------|
+| [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides |
+| [rainbow-delimiters](https://github.com/HiPhish/rainbow-delimiters.nvim) | Rainbow brackets |
+| [nvim-cursorline](https://github.com/yamatsum/nvim-cursorline) | Cursorline highlights |
+| [undotree](https://github.com/mbbill/undotree) | Visual undo history |
+
+### Python
+
+| Plugin | Description |
+|--------|-------------|
+| [venv-selector.nvim](https://github.com/linux-cultist/venv-selector.nvim) | Python venv selector |
 
 ## Keymaps
 
