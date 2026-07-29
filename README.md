@@ -21,7 +21,13 @@ nvim
 ### Windows (PowerShell)
 
 ```powershell
+# Fresh install
 git clone https://github.com/XavRan/dotfiles-nvim.git $env:LOCALAPPDATA\nvim
+
+# Or update existing
+cd $env:LOCALAPPDATA\nvim
+git pull
+
 nvim
 ```
 
