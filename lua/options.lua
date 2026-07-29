@@ -34,6 +34,24 @@ vim.diagnostic.config({
   float = { border = "rounded", source = "if_many" },
 })
 
+-- Auto-cd to project root (git-based, replaces project.nvim)
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("auto-cd", { clear = true }),
+  callback = function()
+    if vim.bo.buftype ~= "" then return end
+    local file = vim.api.nvim_buf_get_name(0)
+    if file == "" then return end
+    local dir = vim.fn.fnamemodify(file, ":h")
+    while dir ~= "/" and dir ~= "." do
+      if vim.fn.isdirectory(dir .. "/.git") == 1 then
+        if vim.fn.getcwd() ~= dir then vim.cmd("cd " .. vim.fn.fnameescape(dir)) end
+        return
+      end
+      dir = vim.fn.fnamemodify(dir, ":h")
+    end
+  end,
+})
+
 -- Transparency
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
